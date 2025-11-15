@@ -5,6 +5,9 @@
         <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     </head>
     <style>
+        #white{
+            color:white;
+        }
         .canvas{
             position:absolute;
             left:0px;
@@ -39,7 +42,8 @@
     </style>
     <body>
         <canvas class="canvas" width="0" height="0"></canvas>
-        <canvas class="overcanva" width="0" height="0"></canvas>
+        <canvas class="overcanva" width="0" height="0"></canvas><br>
+        <div id="white">係数<input id="input" type="text" value="1,0,0,-1" /><input type="button" value="係数変更" onclick="WGSL=compile()" /></div>
         <script type="text/javascript" src="mathematics.lib.js"></script>
         <script type="text/javascript" src="gpu.js"></script>
         <script type="text/javascript" src="main.js"></script>

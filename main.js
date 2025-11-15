@@ -13,9 +13,9 @@ window.addEventListener("contextmenu",()=>{
     event.preventDefault();
 });
 window.addEventListener("keydown",e=>{
-    if(e.code=="ArrowRight" || e.code=="ArrowDown" || e.code=="ArrowUp" || e.code=="ArrowLeft"){
+    /*if(e.code=="ArrowRight" || e.code=="ArrowDown" || e.code=="ArrowUp" || e.code=="ArrowLeft"){
     e.preventDefault();
-    }
+    }*/
     key=e.code;
     if(key=="KeyO"){
         w-=0.1;
