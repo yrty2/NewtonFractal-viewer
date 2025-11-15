@@ -1,0 +1,5 @@
+//z=z+uniforms.cval.xy-mul(uniforms.angle.xy,z-exp(z,1-uniforms.angle.w))/uniforms.angle.w;
+        //var f=ez(-2*mul(vec2<f32>(0,1),z));
+        //z=z+uniforms.cval.xy+mul(mul(uniforms.angle.xy,vec2<f32>(0,1)),mul(vec2<f32>(1,0)-f,exp(vec2<f32>(1,0)+f,-1)));
+        //z=z-vec2<f32>(1,0)+ez(-z);
+        //z=z-mul(z,logz(z));

@@ -1,0 +1,83 @@
+var keypress={
+    w:false,
+    a:false,
+    s:false,
+    d:false,
+    space:false,
+    shift:false
+}
+var collision=false;
+const overcanva=document.querySelector(".overcanva");
+var key="";
+window.addEventListener("contextmenu",()=>{
+    event.preventDefault();
+});
+window.addEventListener("keydown",e=>{
+    if(e.code=="ArrowRight" || e.code=="ArrowDown" || e.code=="ArrowUp" || e.code=="ArrowLeft"){
+    e.preventDefault();
+    }
+    key=e.code;
+    if(key=="KeyO"){
+        w-=0.1;
+        newton(w,[0,0,0],sz);
+    }
+    if(key=="KeyP"){
+        w+=0.1;
+        newton(w,[0,0,0],sz);
+    }
+    if(key=="KeyL"){
+        //sz*=1.5;
+        newton(w,camera.position,sz);
+    }
+    if(key=="KeyK"){
+        sz*=1/2;
+        newton(w,camera.position,sz);
+    }
+    if(key=="KeyW"){
+        keypress.w=true;
+    }
+    if(key=="KeyA"){
+        keypress.a=true;
+    }
+    if(key=="KeyS"){
+        keypress.s=true;
+    }
+    if(key=="KeyD"){
+        keypress.d=true;
+    }
+    if(key=="Space"){
+        keypress.space=true;
+    }
+    if(key=="ShiftLeft"){
+        keypress.shift=true;
+    }
+});
+window.addEventListener("keyup",e=>{
+    if(e.code=="KeyW"){
+        keypress.w=false;
+    }
+    if(e.code=="KeyA"){
+        keypress.a=false;
+    }
+    if(e.code=="KeyS"){
+        keypress.s=false;
+    }
+    if(e.code=="KeyD"){
+        keypress.d=false;
+    }
+    if(e.code=="Space"){
+        keypress.space=false;
+    }
+    if(e.code=="ShiftLeft"){
+        keypress.shift=false;
+    }
+    key="";
+});
+//描画毎に行う処理
+var tval=0;
+function translate(){
+    keycontrol();
+    if(vec.length(camera.movingVector)>0){
+    camera.position=vec.sum(camera.position,vec.prod(camera.movingVector,(camera.position[2]/8)*vec.length(camera.movingVector)));
+    }
+}

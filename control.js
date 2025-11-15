@@ -1,0 +1,86 @@
+const mouse={
+    pos:[0,0],
+    left:false,
+    right:false
+}
+function keycontrol(){
+    var v=[0,0,0];
+    if(keypress.w){
+        v=vec.sum(v,([0,1,0]));
+    }
+    if(keypress.a){
+        v=vec.sum(v,([-1,0,0]));
+    }
+    if(keypress.s){
+        v=vec.sum(v,([0,-1,0]));
+    }
+    if(keypress.d){
+        v=vec.sum(v,([1,0,0]));
+    }
+    if(keypress.space){
+        camera.position[2]*=1.1;
+    }
+    if(keypress.shift){
+        camera.position[2]*=1/1.1;
+    }
+    if(key=="KeyT"){
+        angle[3]+=0.1;
+    }
+    if(key=="KeyY"){
+        angle[3]-=0.1;
+    }
+    camera.movingVector=v;
+}
+canvas.addEventListener("mousemove",e=>{
+    mouse.pos=[2*e.offsetX/canvas.width-1,2*e.offsetY/canvas.width-1];
+    if(key=="ArrowUp"){
+    angle[0]=(2*e.offsetX/canvas.width-1)*2;
+    angle[1]=(2*e.offsetY/canvas.height-1)*2;
+        }
+    if(key=="ArrowDown"){
+    cval[0]=(2*e.offsetX/canvas.width-1)*2;
+    cval[1]=(2*e.offsetY/canvas.height-1)*2;
+        }
+    //マウス
+    if(mouse.right){
+        angle[0]+=2*e.movementX/canvas.width;
+        angle[1]-=2*e.movementY/canvas.width;
+    }
+    if(mouse.left){
+        camera.position[0]-=camera.position[2]*2*e.movementX/canvas.width;
+        camera.position[1]+=camera.position[2]*2*e.movementY/canvas.width;
+    }
+    if(mouse.middle){
+        cval[0]+=2*e.movementX/canvas.width;
+        cval[1]-=2*e.movementY/canvas.width;
+    }
+});
+canvas.addEventListener("click",e=>{
+    e.preventDefault();
+});
+canvas.addEventListener("mousedown",e=>{
+    if(e.button==2){
+        mouse.right=true;
+    }
+    if(e.button==1){
+        mouse.middle=true;
+    }
+    if(e.button==0){
+        mouse.left=true;
+    }
+});
+canvas.addEventListener("mouseup",e=>{
+    if(e.button==2){
+        mouse.right=false;
+    }
+    if(e.button==1){
+        mouse.middle=false;
+    }
+    if(e.button==0){
+        mouse.left=false;
+    }
+});
+canvas.addEventListener("wheel",e=>{
+    const value=4*e.deltaY/180;
+    camera.position[2]*=Math.pow(1.1,value);
+});
